@@ -1,3 +1,31 @@
 //
 // Variables
 //
+
+// Typography
+// ---------------------------------------------------------------------------
+
+// stylelint-disable value-keyword-case
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+// stylelint-enable value-keyword-case
+
+// Root
+// ---------------------------------------------------------------------------
+
+$root-font-size: null !default;
+
+// Body
+// ---------------------------------------------------------------------------
+
+$body-font-family: $font-family-sans-serif !default;
+$body-font-size: 1rem !default;
+$body-font-style: normal !default;
+$body-font-weight: 400 !default;
+$body-line-height: 1 !default;
+$body-text-align: left !default;
+
+// Codes
+// ---------------------------------------------------------------------------
+
+$code-font-family: $font-family-monospace !default;
