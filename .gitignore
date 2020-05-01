@@ -1,0 +1,115 @@
+# gitignore
+
+# Git
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.orig
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
+
+# Linux
+*~
+.directory
+.fuse_hidden*
+.nfs*
+.Trash-*
+
+# macOS
+._*
+.apdisk
+.AppleDB
+.AppleDesktop
+.AppleDouble
+.com.apple.timemachine.donotpresent
+.DocumentRevisions-V100
+.DS_Store
+.fseventsd
+.LSOverride
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+Icon
+Network Trash Folder
+Temporary Items
+
+# Node
+*.log
+*.pid
+*.pid.lock
+*.seed
+*.tgz
+.cache
+.env
+.eslintcache
+.fusebox
+.grunt
+.lock-wscript
+.next
+.node_repl_history
+.npm
+.nuxt
+.nyc_output
+.serverless
+.vuepress/dist
+.yarn-integrity
+bower_components
+build/Release
+coverage
+jspm_packages
+lib-cov
+logs
+node_modules
+npm-debug.log*
+pids
+typings
+yarn-debug.log*
+yarn-error.log*
+
+# NotepadPP
+*.bak
+
+# SublimeText
+*.stTheme.cache
+*.sublime-project
+*.sublime-workspace
+*.tmlanguage.cache
+*.tmPreferences.cache
+bh_unicode_properties.cache
+GitHub.sublime-settings
+oscrypto-ca-bundle.crt
+Package Control.ca-bundle
+Package Control.ca-certs
+Package Control.ca-list
+Package Control.cache
+Package Control.last-run
+Package Control.merged-ca-bundle
+Package Control.system-ca-bundle
+Package Control.user-ca-bundle
+sftp-config.json
+
+# VisualStudioCode
+.history
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+# Windows
+$RECYCLE.BIN/
+*.cab
+*.lnk
+*.msi
+*.msix
+*.msm
+*.msp
+*.stackdump
+[Dd]esktop.ini
+ehthumbs.db
+ehthumbs_vista.db
+Thumbs.db

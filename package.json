@@ -1,0 +1,59 @@
+{
+    "name": "docta",
+    "version": "0.0.0",
+    "license": "MIT",
+    "description": "Package in experimental stage. Do not use for production.",
+    "author": "Lucas Banegas <lucasconobanegas@gmail.com>",
+    "homepage": "https://github.com/docta/docta",
+    "repository": "git+https://github.com/docta/docta.git",
+    "bugs": "https://github.com/docta/docta/issues",
+    "main": "scss/docta.scss",
+    "keywords": [
+        "css",
+        "minireset",
+        "normalize",
+        "reboot",
+        "reset"
+    ],
+    "scripts": {
+        "build:sass": "node-sass --output-style expanded --precision 6 \"scss/docta.scss\" \"css/docta.css\"",
+        "build:postcss": "postcss \"css/docta.css\" --replace --use autoprefixer",
+        "build:cleancss": "cleancss --format beautify -O1 selectorsSortingMethod:off -o \"css/docta.css\" \"css/docta.css\"",
+        "build:csscomb": "csscomb --tty-mode --verbose \"css/docta.css\"",
+        "build:prettier": "prettier --color --write \"css/docta.css\"",
+        "build:stylelint": "stylelint \"css/docta.css\" --aei --color --fix",
+        "build:eclint": "eclint fix \"css/docta.css\"",
+        "build": "run-s build:sass build:postcss build:cleancss build:csscomb build:prettier build:stylelint build:eclint",
+        "minify:cleancss": "cleancss -O2 -o \"css/docta.min.css\" \"css/docta.css\"",
+        "minify:eclint": "eclint fix \"css/docta.min.css\"",
+        "minify": "run-s minify:cleancss minify:eclint",
+        "start": "run-s test build minify",
+        "test:stylelint": "stylelint \"scss/**/*.scss\" --aei --color --fix",
+        "test:fusv": "find-unused-sass-variables \"scss\"",
+        "test:prettier": "prettier --color --write \"scss/**/*.scss\"",
+        "test:eclint": "eclint fix \"scss/**/*.scss\"",
+        "test": "run-s test:stylelint test:fusv test:prettier test:eclint"
+    },
+    "dependencies": {
+        "bootstrap": "^4.4.1",
+        "minireset.css": "0.0.6",
+        "normalize.css": "^8.0.1"
+    },
+    "devDependencies": {
+        "autoprefixer": "^9.7.6",
+        "clean-css-cli": "^4.3.0",
+        "csscomb": "^4.3.0",
+        "eclint": "^2.8.1",
+        "find-unused-sass-variables": "^2.0.0",
+        "node-sass": "^4.14.0",
+        "npm-run-all": "^4.1.5",
+        "postcss-cli": "^7.1.1",
+        "prettier": "^2.0.5",
+        "stylelint": "^13.3.3",
+        "stylelint-config-prettier": "^8.0.1",
+        "stylelint-config-recommended-scss": "^4.2.0",
+        "stylelint-config-standard": "^20.0.0",
+        "stylelint-order": "^4.0.0",
+        "stylelint-scss": "^3.17.1"
+    }
+}
