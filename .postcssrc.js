@@ -3,7 +3,6 @@
 module.exports = {
     plugins: [
         require("autoprefixer"),
-        require("postcss-convert-values"),
         require("postcss-merge-longhand"),
         require("postcss-minify-font-values"),
         require("postcss-minify-gradients"),
@@ -18,5 +17,15 @@ module.exports = {
         require("postcss-ordered-values"),
         require("postcss-reduce-initial"),
         require("postcss-reduce-transforms"),
+        require("postcss-pxtorem")({
+            mediaQuery: true,
+            minPixelValue: 0,
+            propList: ["*"],
+            replace: true,
+            unitPrecision: 6,
+        }),
+        require("css-mqpacker")({
+            sort: true,
+        }),
     ],
 };

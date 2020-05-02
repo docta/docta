@@ -2,17 +2,12 @@
 // Functions
 //
 
-//
-// Validate variant
-//
+// Colors
+// ---------------------------------------------------------------------------
 
 @function validate-color-variant($variant) {
     @return type-of($variant) == number and unitless($variant) and $variant > 0 and $variant < 1000;
 }
-
-//
-// Get gray
-//
 
 @function get-gray($variant: null) {
     @if $variant == null {
@@ -24,10 +19,6 @@
     $weight: percentage($variant / 1000);
     @return mix($black, $white, $weight);
 }
-
-//
-// Get color
-//
 
 @function get-color($name, $variant: null) {
     @if $name == "gray" {
@@ -56,4 +47,27 @@
     }
 
     @return $mid-color;
+}
+
+// Breakpoints
+// ---------------------------------------------------------------------------
+
+@function breakpoint-next($name) {
+    $names: map-keys($breakpoints);
+    $index: index($names, $name);
+    @return if($index != null and $index < length($names), nth($names, $index + 1), null);
+}
+
+@function breakpoint-min($name) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name) {
+    $next: breakpoint-next($name);
+    @return if($next, breakpoint-min($next) - 0.02, null);
+}
+
+@function breakpoint-infix($name) {
+    @return if(breakpoint-min($name) == null, "", "-#{$name}");
 }

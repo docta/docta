@@ -1,3 +1,106 @@
 //
 // Grid
 //
+
+// Containers
+// ---------------------------------------------------------------------------
+
+.container,
+.container-fluid {
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+    @each $breakpoint, $max-width in $containers {
+        @include media-breakpoint-up($breakpoint) {
+            max-width: $max-width;
+        }
+    }
+}
+
+// Rows
+// ---------------------------------------------------------------------------
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -$gutter / 2;
+    margin-left: -$gutter / 2;
+}
+
+// Columns
+// ---------------------------------------------------------------------------
+
+%column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+}
+
+@each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+
+    .col#{$infix} {
+        @extend %column;
+    }
+
+    @for $size from 1 through $columns {
+        .col#{$infix}-#{$size} {
+            @extend %column;
+        }
+    }
+
+    .col#{$infix}-auto {
+        @extend %column;
+    }
+
+    @include media-breakpoint-up($breakpoint) {
+        .col#{$infix} {
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+
+        @for $size from 1 through $columns {
+            .col#{$infix}-#{$size} {
+                flex: 0 0 percentage($size / $columns);
+                max-width: percentage($size / $columns);
+            }
+        }
+
+        .col#{$infix}-auto {
+            flex: 0 0 auto;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .ord#{$infix}-first {
+            order: -1;
+        }
+
+        @for $order from 0 through $columns {
+            .ord#{$infix}-#{$order} {
+                order: $order;
+            }
+        }
+
+        .ord#{$infix}-last {
+            order: $columns + 1;
+        }
+
+        @for $size from 0 through ($columns - 1) {
+            @if not($infix == "" and $size == 0) {
+                $offset: $size / $columns;
+
+                .off#{$infix}-#{$size} {
+                    margin-left: if($offset == 0, 0, percentage($offset));
+                }
+            }
+        }
+    }
+}
