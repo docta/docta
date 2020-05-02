@@ -1,6 +1,6 @@
 *,
-::after,
-::before {
+::before,
+::after {
     box-sizing: border-box;
 }
 
@@ -10,59 +10,36 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-blockquote,
 body,
-button,
-dd,
-dl,
-fieldset,
-figure,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
+p,
 hr,
+blockquote,
+figure,
+ol,
+ul,
+dl,
+dd,
+pre,
 iframe,
 img,
-input,
-legend,
-ol,
-optgroup,
-p,
-pre,
-select,
 td,
-textarea,
 th,
-ul {
+fieldset,
+legend,
+button,
+input,
+optgroup,
+select,
+textarea {
     padding: 0;
     margin: 0;
     border: 0;
-}
-
-address,
-button,
-code,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-input,
-kbd,
-optgroup,
-pre,
-samp,
-select,
-textarea {
-    font-family: inherit;
-    font-size: inherit;
-    font-style: inherit;
-    font-weight: inherit;
-    line-height: inherit;
 }
 
 body {
@@ -72,6 +49,29 @@ body {
     font-weight: 400;
     line-height: 1;
     text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+address,
+code,
+kbd,
+pre,
+samp,
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
 }
 
 hr {
@@ -141,8 +141,8 @@ samp {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
-pre,
-textarea {
+textarea,
+pre {
     overflow: auto;
 }
 

@@ -1,6 +1,0 @@
-{
-    "plugins": {
-        "autoprefixer": { "cascade": false },
-        "cssnano": { "preset": ["default", { "mergeRules": false, "minifySelectors": false, "normalizeWhitespace": false }] }
-    }
-}
