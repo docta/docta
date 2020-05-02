@@ -141,7 +141,6 @@ samp {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 }
 
-textarea,
 pre {
     overflow: auto;
 }
@@ -276,6 +275,11 @@ input[type="search"]::-webkit-search-decoration {
 select {
     text-transform: none;
     word-wrap: normal;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
 }
 
 summary {
