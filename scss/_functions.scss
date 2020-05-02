@@ -1,3 +1,51 @@
 //
 // Functions
 //
+
+//
+// Get gray
+//
+
+@function get-gray($variant: null) {
+    @if $variant == null {
+        $variant: 500;
+    } @else if type-of($variant) != number or not unitless($variant) or $variant < 0 or $variant > 1000 {
+        @error "Invalid gray variant: #{$variant}";
+    }
+
+    $weight: percentage($variant / 1000);
+    @return mix($black, $white, $weight);
+}
+
+//
+// Get color
+//
+
+@function get-color($name, $variant: null) {
+    @if $name == "gray" {
+        @return get-gray($variant);
+    } @else if map-has-key($theme-colors, $name) {
+        $name: map-get($theme-colors, $name);
+    }
+
+    @if not map-has-key($colors, $name) {
+        @error "Invalid color name: #{$name}";
+    }
+
+    $raw-color: map-get($colors, $name);
+    $mid-color: change-color($raw-color, $lightness: 50%);
+
+    @if $variant == null {
+        @return $raw-color;
+    } @else if type-of($variant) != number or not unitless($variant) or $variant < 0 or $variant > 1000 {
+        @error "Invalid color variant: #{$variant}";
+    } @else if $variant < 500 {
+        $weight: percentage($variant / 500);
+        @return mix($mid-color, $white, $weight);
+    } @else if $variant > 500 {
+        $weight: percentage(($variant - 500) / 500);
+        @return mix($black, $mid-color, $weight);
+    }
+
+    @return $mid-color;
+}

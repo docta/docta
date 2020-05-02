@@ -48,7 +48,9 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 1;
+    color: #1a1a1a;
     text-align: left;
+    background-color: #ffffff;
 }
 
 h1,
@@ -90,7 +92,14 @@ main {
 }
 
 a {
+    color: #0267fd;
+    text-decoration: none;
     background-color: transparent;
+}
+
+a:hover {
+    color: #0253ca;
+    text-decoration: none;
 }
 
 a:not([href]),
