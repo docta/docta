@@ -66,23 +66,3 @@
         }
     }
 }
-
-// Utilities
-// ---------------------------------------------------------------------------
-
-@mixin utility($name, $options, $infix) {
-    $properties: get-utility-property($name, $options);
-    $responsive: map-get($options, responsive);
-
-    @if $responsive == true or $infix == "" {
-        @each $suffix, $value in get-utility-values($name, $options) {
-            $classname: get-utility-classname($name, $options, $infix, $suffix);
-
-            .#{$classname} {
-                @each $property in $properties {
-                    #{$property}: $value;
-                }
-            }
-        }
-    }
-}

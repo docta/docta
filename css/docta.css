@@ -6429,3 +6429,29 @@ template {
         padding-left: 3rem;
     }
 }
+
+@media print {
+    .d-print-b {
+        display: block;
+    }
+
+    .d-print-f {
+        display: flex;
+    }
+
+    .d-print-i {
+        display: inline;
+    }
+
+    .d-print-ib {
+        display: inline-block;
+    }
+
+    .d-print-if {
+        display: inline-flex;
+    }
+
+    .d-print-n {
+        display: none;
+    }
+}

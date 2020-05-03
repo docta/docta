@@ -100,7 +100,7 @@
     @return #{$prefix}#{$infix}#{$suffix};
 }
 
-@function get-utility-property($name, $opts) {
+@function get-utility-properties($name, $opts) {
     $props: if(map-has-key($opts, property), map-get($opts, property), $name);
 
     @if type-of($props) != list and type-of($props) != map {
