@@ -53,6 +53,8 @@ $spacers: (
     9: $spacer * 3,
 ) !default;
 
+$margins: get-utility-margins() !default;
+
 // Breakpoints
 // ---------------------------------------------------------------------------
 
@@ -69,11 +71,15 @@ $breakpoints: (
 
 $columns: 12 !default;
 $gutter: $spacer * 2 !default;
+$containers: get-containers() !default;
+$orders: get-utility-orders() !default;
 
 // Utilities
 // ---------------------------------------------------------------------------
 
-$utilities: (
+$utilities: () !default;
+
+$_utilities: (
     display: (
         class: d,
         print: true,
@@ -172,80 +178,82 @@ $utilities: (
     order: (
         class: ord,
         responsive: true,
-        values: get-utility-orders(),
+        values: $orders,
     ),
     margin: (
         class: m,
         responsive: true,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     margin-x: (
         class: mx,
         responsive: true,
         property: margin-right margin-left,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     margin-y: (
         class: my,
         responsive: true,
         property: margin-top margin-bottom,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     margin-top: (
         class: mt,
         responsive: true,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     margin-right: (
         class: mr,
         responsive: true,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     margin-bottom: (
         class: mb,
         responsive: true,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     margin-left: (
         class: ml,
         responsive: true,
-        values: get-utility-margins(),
+        values: $margins,
     ),
     padding: (
         class: p,
         responsive: true,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
     padding-x: (
         class: px,
         responsive: true,
         property: padding-right padding-left,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
     padding-y: (
         class: py,
         responsive: true,
         property: padding-top padding-bottom,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
     padding-top: (
         class: pt,
         responsive: true,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
     padding-right: (
         class: pr,
         responsive: true,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
     padding-bottom: (
         class: pb,
         responsive: true,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
     padding-left: (
         class: pl,
         responsive: true,
-        values: get-utility-paddings(),
+        values: $spacers,
     ),
-) !default;
+);
+
+$utilities: map-merge($_utilities, $utilities);

@@ -2,25 +2,6 @@
 // Functions
 //
 
-// Negativify map
-// ---------------------------------------------------------------------------
-
-@function negativify-map($map) {
-    $res: ();
-
-    @each $key, $val in $map {
-        @if $key != 0 {
-            $val: (
-                "n#{$key}": -$val,
-            );
-
-            $res: map-merge($res, $val);
-        }
-    }
-
-    @return $res;
-}
-
 // Colors
 // ---------------------------------------------------------------------------
 
@@ -160,11 +141,18 @@
     @return zip($orders, $orders);
 }
 
-@function get-utility-paddings() {
-    @return $spacers;
-}
-
 @function get-utility-margins() {
-    $negatives: negativify-map($spacers);
+    $negatives: ();
+
+    @each $key, $val in $spacers {
+        @if $key != 0 and $val != 0 {
+            $negative: (
+                "n#{$key}": -$val,
+            );
+
+            $negatives: map-merge($negatives, $negative);
+        }
+    }
+
     @return map-merge($spacers, $negatives);
 }
