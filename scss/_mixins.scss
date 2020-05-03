@@ -5,11 +5,11 @@
 // Breakpoints
 // ---------------------------------------------------------------------------
 
-@mixin media-breakpoint-up($name) {
-    $min: get-breakpoint-min($name);
+@mixin media-up($breakpoint) {
+    $min-width: get-min-width($breakpoint);
 
-    @if $min {
-        @media (min-width: $min) {
+    @if $min-width {
+        @media (min-width: $min-width) {
             @content;
         }
     } @else {
@@ -17,11 +17,11 @@
     }
 }
 
-@mixin media-breakpoint-down($name) {
-    $max: get-breakpoint-max($name);
+@mixin media-down($breakpoint) {
+    $max-width: get-max-width($breakpoint);
 
-    @if $max {
-        @media (max-width: $max) {
+    @if $max-width {
+        @media (max-width: $max-width) {
             @content;
         }
     } @else {
@@ -29,39 +29,39 @@
     }
 }
 
-@mixin media-breakpoint-between($lower, $upper) {
-    $min: get-breakpoint-min($lower);
-    $max: get-breakpoint-max($upper);
+@mixin media-between($lower-breakpoint, $upper-breakpoint) {
+    $min-width: get-min-width($lower-breakpoint);
+    $max-width: get-max-width($upper-breakpoint);
 
-    @if $min != null and $max != null {
-        @media (min-width: $min) and (max-width: $max) {
+    @if $min-width != null and $max-width != null {
+        @media (min-width: $min-width) and (max-width: $max-width) {
             @content;
         }
-    } @else if $max == null {
-        @include media-breakpoint-up($lower) {
+    } @else if $max-width == null {
+        @include media-up($lower-breakpoint) {
             @content;
         }
-    } @else if $min == null {
-        @include media-breakpoint-down($upper) {
+    } @else if $min-width == null {
+        @include media-down($upper-breakpoint) {
             @content;
         }
     }
 }
 
-@mixin media-breakpoint-only($name) {
-    $min: get-breakpoint-min($name);
-    $max: get-breakpoint-max($name);
+@mixin media-only($breakpoint) {
+    $min-width: get-min-width($breakpoint);
+    $max-width: get-max-width($breakpoint);
 
-    @if $min != null and $max != null {
-        @media (min-width: $min) and (max-width: $max) {
+    @if $min-width != null and $max-width != null {
+        @media (min-width: $min-width) and (max-width: $max-width) {
             @content;
         }
-    } @else if $max == null {
-        @include media-breakpoint-up($name) {
+    } @else if $max-width == null {
+        @include media-up($breakpoint) {
             @content;
         }
-    } @else if $min == null {
-        @include media-breakpoint-down($name) {
+    } @else if $min-width == null {
+        @include media-down($breakpoint) {
             @content;
         }
     }
@@ -70,13 +70,13 @@
 // Utilities
 // ---------------------------------------------------------------------------
 
-@mixin utility($name, $opts, $infix) {
-    $properties: get-utility-property($name, $opts);
-    $responsive: map-get($opts, responsive);
+@mixin utility($name, $options, $infix) {
+    $properties: get-utility-property($name, $options);
+    $responsive: map-get($options, responsive);
 
     @if $responsive == true or $infix == "" {
-        @each $suffix, $value in get-utility-values($name, $opts) {
-            $classname: get-utility-classname($name, $opts, $infix, $suffix);
+        @each $suffix, $value in get-utility-values($name, $options) {
+            $classname: get-utility-classname($name, $options, $infix, $suffix);
 
             .#{$classname} {
                 @each $property in $properties {

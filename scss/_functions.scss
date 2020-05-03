@@ -5,14 +5,14 @@
 // Colors
 // ---------------------------------------------------------------------------
 
-@function validate-color-variant($variant) {
+@function validate-variant($variant) {
     @return type-of($variant) == number and unitless($variant) and $variant > 0 and $variant < 1000;
 }
 
 @function get-gray($variant: null) {
     @if $variant == null {
         $variant: 500;
-    } @else if not validate-color-variant($variant) {
+    } @else if not validate-variant($variant) {
         @error "Invalid gray variant: #{$variant}";
     }
 
@@ -36,7 +36,7 @@
 
     @if $variant == null {
         @return $raw-color;
-    } @else if not validate-color-variant($variant) {
+    } @else if not validate-variant($variant) {
         @error "Invalid color variant: #{$variant}";
     } @else if $variant < 500 {
         $weight: percentage($variant / 500);
@@ -52,24 +52,24 @@
 // Breakpoints
 // ---------------------------------------------------------------------------
 
-@function get-breakpoint-next($name) {
-    $names: map-keys($breakpoints);
-    $index: index($names, $name);
+@function get-next-breakpoint($breakpoint) {
+    $breakpoint-names: map-keys($breakpoints);
+    $index: index($breakpoint-names, $breakpoint);
     @return if($index != null and $index < length($names), nth($names, $index + 1), null);
 }
 
-@function get-breakpoint-min($name) {
-    $min: map-get($breakpoints, $name);
-    @return if($min != 0, $min, null);
+@function get-min-width($breakpoint) {
+    $min-width: map-get($breakpoints, $breakpoint);
+    @return if($min-width != 0, $min-width, null);
 }
 
-@function get-breakpoint-max($name) {
-    $next: get-breakpoint-next($name);
-    @return if($next, get-breakpoint-min($next) - 0.02, null);
+@function get-max-width($breakpoint) {
+    $next-breakpoint: get-next-breakpoint($breakpoint);
+    @return if($next-breakpoint, get-min-width($next-breakpoint) - 0.02, null);
 }
 
-@function get-breakpoint-infix($name) {
-    @return if(get-breakpoint-min($name) == null, "", "-#{$name}");
+@function get-infix($breakpoint) {
+    @return if(get-min-width($breakpoint) == null, "", "-#{$breakpoint}");
 }
 
 // Containers
@@ -131,7 +131,7 @@
 // Utilities - Values
 // ---------------------------------------------------------------------------
 
-@function get-utility-orders() {
+@function get-orders() {
     $orders: ();
 
     @for $i from 0 through $columns {
@@ -141,7 +141,7 @@
     @return zip($orders, $orders);
 }
 
-@function get-utility-margins() {
+@function get-margins() {
     $negatives: ();
 
     @each $key, $val in $spacers {

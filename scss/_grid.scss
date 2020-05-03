@@ -16,7 +16,7 @@
 
 .container {
     @each $breakpoint, $max-width in $containers {
-        @include media-breakpoint-up($breakpoint) {
+        @include media-up($breakpoint) {
             max-width: $max-width;
         }
     }
@@ -43,7 +43,7 @@
 }
 
 @each $breakpoint in map-keys($breakpoints) {
-    $infix: get-breakpoint-infix($breakpoint);
+    $infix: get-infix($breakpoint);
 
     .col#{$infix} {
         @extend %column;
@@ -59,7 +59,7 @@
         @extend %column;
     }
 
-    @include media-breakpoint-up($breakpoint) {
+    @include media-up($breakpoint) {
         .col#{$infix} {
             flex-basis: 0;
             flex-grow: 1;

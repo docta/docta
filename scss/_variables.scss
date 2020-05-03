@@ -53,7 +53,7 @@ $spacers: (
     9: $spacer * 3,
 ) !default;
 
-$margins: get-utility-margins() !default;
+$margins: get-margins() !default;
 
 // Breakpoints
 // ---------------------------------------------------------------------------
@@ -72,7 +72,7 @@ $breakpoints: (
 $columns: 12 !default;
 $gutter: $spacer * 2 !default;
 $containers: get-containers() !default;
-$orders: get-utility-orders() !default;
+$orders: get-orders() !default;
 
 // Utilities
 // ---------------------------------------------------------------------------
