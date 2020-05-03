@@ -2,6 +2,25 @@
 // Functions
 //
 
+// Negativify map
+// ---------------------------------------------------------------------------
+
+@function negativify-map($map) {
+    $res: ();
+
+    @each $key, $val in $map {
+        @if $key != 0 {
+            $val: (
+                "n#{$key}": -$val,
+            );
+
+            $res: map-merge($res, $val);
+        }
+    }
+
+    @return $res;
+}
+
 // Colors
 // ---------------------------------------------------------------------------
 
@@ -72,7 +91,26 @@
     @return if(get-breakpoint-min($name) == null, "", "-#{$name}");
 }
 
-// Utilities
+// Containers
+// ---------------------------------------------------------------------------
+
+@function get-containers() {
+    $containers: ();
+
+    @each $breakpoint, $min-width in $breakpoints {
+        @if $min-width != 0 and comparable($min-width, $gutter) {
+            $container: (
+                $breakpoint: $min-width - $gutter,
+            );
+
+            $containers: map-merge($containers, $container);
+        }
+    }
+
+    @return $containers;
+}
+
+// Utilities - Helpers
 // ---------------------------------------------------------------------------
 
 @function get-utility-classname($name, $opts, $infix, $suffix) {
@@ -109,6 +147,9 @@
     @return $values;
 }
 
+// Utilities - Values
+// ---------------------------------------------------------------------------
+
 @function get-utility-orders() {
     $orders: ();
 
@@ -117,4 +158,13 @@
     }
 
     @return zip($orders, $orders);
+}
+
+@function get-utility-paddings() {
+    @return $spacers;
+}
+
+@function get-utility-margins() {
+    $negatives: negativify-map($spacers);
+    @return map-merge($spacers, $negatives);
 }

@@ -35,32 +35,40 @@ $link-hover-decoration: none !default;
 
 $code-font-family: $font-family-monospace !default;
 
+// Spacers
+// ---------------------------------------------------------------------------
+
+$spacer: 1rem !default;
+
+$spacers: (
+    0: 0,
+    1: $spacer * 0.25,
+    2: $spacer * 0.5,
+    3: $spacer * 0.75,
+    4: $spacer * 1,
+    5: $spacer * 1.25,
+    6: $spacer * 1.5,
+    7: $spacer * 1.75,
+    8: $spacer * 2,
+    9: $spacer * 3,
+) !default;
+
 // Breakpoints
 // ---------------------------------------------------------------------------
 
 $breakpoints: (
     xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
+    sm: $spacer * 36,
+    md: $spacer * 48,
+    lg: $spacer * 62,
+    xl: $spacer * 75,
 ) !default;
 
-// Containers
-// ---------------------------------------------------------------------------
-
-$containers: (
-    sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px,
-) !default;
-
-// Columns
+// Grid
 // ---------------------------------------------------------------------------
 
 $columns: 12 !default;
-$gutter: 2rem !default;
+$gutter: $spacer * 2 !default;
 
 // Utilities
 // ---------------------------------------------------------------------------
@@ -166,4 +174,78 @@ $utilities: (
         responsive: true,
         values: get-utility-orders(),
     ),
-);
+    margin: (
+        class: m,
+        responsive: true,
+        values: get-utility-margins(),
+    ),
+    margin-x: (
+        class: mx,
+        responsive: true,
+        property: margin-right margin-left,
+        values: get-utility-margins(),
+    ),
+    margin-y: (
+        class: my,
+        responsive: true,
+        property: margin-top margin-bottom,
+        values: get-utility-margins(),
+    ),
+    margin-top: (
+        class: mt,
+        responsive: true,
+        values: get-utility-margins(),
+    ),
+    margin-right: (
+        class: mr,
+        responsive: true,
+        values: get-utility-margins(),
+    ),
+    margin-bottom: (
+        class: mb,
+        responsive: true,
+        values: get-utility-margins(),
+    ),
+    margin-left: (
+        class: ml,
+        responsive: true,
+        values: get-utility-margins(),
+    ),
+    padding: (
+        class: p,
+        responsive: true,
+        values: get-utility-paddings(),
+    ),
+    padding-x: (
+        class: px,
+        responsive: true,
+        property: padding-right padding-left,
+        values: get-utility-paddings(),
+    ),
+    padding-y: (
+        class: py,
+        responsive: true,
+        property: padding-top padding-bottom,
+        values: get-utility-paddings(),
+    ),
+    padding-top: (
+        class: pt,
+        responsive: true,
+        values: get-utility-paddings(),
+    ),
+    padding-right: (
+        class: pr,
+        responsive: true,
+        values: get-utility-paddings(),
+    ),
+    padding-bottom: (
+        class: pb,
+        responsive: true,
+        values: get-utility-paddings(),
+    ),
+    padding-left: (
+        class: pl,
+        responsive: true,
+        values: get-utility-paddings(),
+    ),
+) !default;
