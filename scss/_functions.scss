@@ -52,22 +52,25 @@
 // Breakpoints
 // ---------------------------------------------------------------------------
 
-@function breakpoint-next($name) {
+@function get-breakpoint-next($name) {
     $names: map-keys($breakpoints);
     $index: index($names, $name);
     @return if($index != null and $index < length($names), nth($names, $index + 1), null);
 }
 
-@function breakpoint-min($name) {
+@function get-breakpoint-min($name) {
     $min: map-get($breakpoints, $name);
     @return if($min != 0, $min, null);
 }
 
-@function breakpoint-max($name) {
-    $next: breakpoint-next($name);
-    @return if($next, breakpoint-min($next) - 0.02, null);
+@function get-breakpoint-max($name) {
+    $next: get-breakpoint-next($name);
+    @return if($next, get-breakpoint-min($next) - 0.02, null);
 }
 
-@function breakpoint-infix($name) {
-    @return if(breakpoint-min($name) == null, "", "-#{$name}");
+@function get-breakpoint-infix($name) {
+    @return if(get-breakpoint-min($name) == null, "", "-#{$name}");
 }
+
+// Breakpoints
+// ---------------------------------------------------------------------------

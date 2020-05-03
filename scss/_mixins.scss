@@ -6,7 +6,7 @@
 // ---------------------------------------------------------------------------
 
 @mixin media-breakpoint-up($name) {
-    $min: breakpoint-min($name);
+    $min: get-breakpoint-min($name);
 
     @if $min {
         @media (min-width: $min) {
@@ -18,7 +18,7 @@
 }
 
 @mixin media-breakpoint-down($name) {
-    $max: breakpoint-max($name);
+    $max: get-breakpoint-max($name);
 
     @if $max {
         @media (max-width: $max) {
@@ -30,8 +30,8 @@
 }
 
 @mixin media-breakpoint-between($lower, $upper) {
-    $min: breakpoint-min($lower);
-    $max: breakpoint-max($upper);
+    $min: get-breakpoint-min($lower);
+    $max: get-breakpoint-max($upper);
 
     @if $min != null and $max != null {
         @media (min-width: $min) and (max-width: $max) {
@@ -49,8 +49,8 @@
 }
 
 @mixin media-breakpoint-only($name) {
-    $min: breakpoint-min($name);
-    $max: breakpoint-max($name);
+    $min: get-breakpoint-min($name);
+    $max: get-breakpoint-max($name);
 
     @if $min != null and $max != null {
         @media (min-width: $min) and (max-width: $max) {

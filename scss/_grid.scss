@@ -43,7 +43,7 @@
 }
 
 @each $breakpoint in map-keys($breakpoints) {
-    $infix: breakpoint-infix($breakpoint);
+    $infix: get-breakpoint-infix($breakpoint);
 
     .col#{$infix} {
         @extend %column;
