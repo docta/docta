@@ -21,7 +21,7 @@
 }
 
 @function get-color($name, $variant: null) {
-    @if $name == "gray" {
+    @if $name == gray {
         @return get-gray($variant);
     } @else if map-has-key($theme-colors, $name) {
         $name: map-get($theme-colors, $name);
@@ -72,5 +72,49 @@
     @return if(get-breakpoint-min($name) == null, "", "-#{$name}");
 }
 
-// Breakpoints
+// Utilities
 // ---------------------------------------------------------------------------
+
+@function get-utility-classname($name, $opts, $infix, $suffix) {
+    $prefix: if(map-has-key($opts, class), map-get($opts, class), $name);
+    $suffix: if($suffix == null, "", "-#{$suffix}");
+    @return #{$prefix}#{$infix}#{$suffix};
+}
+
+@function get-utility-property($name, $opts) {
+    $props: if(map-has-key($opts, property), map-get($opts, property), $name);
+
+    @if type-of($props) != list and type-of($props) != map {
+        $props: append((), $props);
+    }
+
+    @return $props;
+}
+
+@function get-utility-values($name, $opts) {
+    @if not map-has-key($opts, values) {
+        @error "Utility '#{$name}' requires values.";
+    }
+
+    $values: map-get($opts, values);
+
+    @if type-of($values) != list and type-of($values) != map {
+        $values: append((), $values);
+    }
+
+    @if type-of(nth($values, 1)) != list {
+        $values: zip($values, $values);
+    }
+
+    @return $values;
+}
+
+@function get-utility-orders() {
+    $orders: ();
+
+    @for $i from 0 through $columns {
+        $orders: append($orders, $i);
+    }
+
+    @return zip($orders, $orders);
+}

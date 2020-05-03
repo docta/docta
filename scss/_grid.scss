@@ -79,20 +79,6 @@
             max-width: 100%;
         }
 
-        .ord#{$infix}-first {
-            order: -1;
-        }
-
-        @for $order from 0 through $columns {
-            .ord#{$infix}-#{$order} {
-                order: $order;
-            }
-        }
-
-        .ord#{$infix}-last {
-            order: $columns + 1;
-        }
-
         @for $size from 0 through ($columns - 1) {
             @if not($infix == "" and $size == 0) {
                 $offset: $size / $columns;

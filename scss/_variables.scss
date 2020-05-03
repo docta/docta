@@ -44,7 +44,7 @@ $breakpoints: (
     md: 768px,
     lg: 992px,
     xl: 1200px,
-);
+) !default;
 
 // Containers
 // ---------------------------------------------------------------------------
@@ -54,10 +54,116 @@ $containers: (
     md: 720px,
     lg: 960px,
     xl: 1140px,
-);
+) !default;
 
 // Columns
 // ---------------------------------------------------------------------------
 
-$columns: 12;
-$gutter: 2rem;
+$columns: 12 !default;
+$gutter: 2rem !default;
+
+// Utilities
+// ---------------------------------------------------------------------------
+
+$utilities: (
+    display: (
+        class: d,
+        print: true,
+        responsive: true,
+        values: (
+            b: block,
+            f: flex,
+            i: inline,
+            ib: inline-block,
+            if: inline-flex,
+            n: none,
+        ),
+    ),
+    flex: (
+        class: fx,
+        responsive: true,
+        values: (
+            fill: 1 1 auto,
+        ),
+    ),
+    flex-direction: (
+        class: fxd,
+        responsive: true,
+        values: (
+            c: column,
+            cr: column-reverse,
+            r: row,
+            rr: row-reverse,
+        ),
+    ),
+    flex-wrap: (
+        class: fxw,
+        responsive: true,
+        values: (
+            n: nowrap,
+            w: wrap,
+            wr: wrap-reverse,
+        ),
+    ),
+    flex-shrink: (
+        class: fxsh,
+        responsive: true,
+        values: 0 1,
+    ),
+    flex-grow: (
+        class: fxg,
+        responsive: true,
+        values: 0 1,
+    ),
+    align-content: (
+        class: ac,
+        responsive: true,
+        values: (
+            c: center,
+            fe: flex-end,
+            fs: flex-start,
+            s: stretch,
+            sa: space-around,
+            sb: space-between,
+        ),
+    ),
+    align-items: (
+        class: ai,
+        responsive: true,
+        values: (
+            b: baseline,
+            c: center,
+            fe: flex-end,
+            fs: flex-start,
+            s: stretch,
+        ),
+    ),
+    align-self: (
+        class: as,
+        responsive: true,
+        values: (
+            a: auto,
+            b: baseline,
+            c: center,
+            fe: flex-end,
+            fs: flex-start,
+            s: stretch,
+        ),
+    ),
+    justify-content: (
+        class: jc,
+        responsive: true,
+        values: (
+            c: center,
+            fe: flex-end,
+            fs: flex-start,
+            sa: space-around,
+            sb: space-between,
+        ),
+    ),
+    order: (
+        class: ord,
+        responsive: true,
+        values: get-utility-orders(),
+    ),
+);
