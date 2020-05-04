@@ -1,6 +1,6 @@
 {
     "name": "docta",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "license": "MIT",
     "description": "Package in experimental stage. Do not use for production.",
     "author": "Lucas Banegas <lucasconobanegas@gmail.com>",
@@ -34,11 +34,6 @@
         "test:prettier": "prettier --color --write \"scss/**/*.scss\"",
         "test:eclint": "eclint fix \"scss/**/*.scss\"",
         "test": "run-s test:stylelint test:fusv test:prettier test:eclint"
-    },
-    "dependencies": {
-        "bootstrap": "^4.4.1",
-        "minireset.css": "0.0.6",
-        "normalize.css": "^8.0.1"
     },
     "devDependencies": {
         "autoprefixer": "^9.7.6",
