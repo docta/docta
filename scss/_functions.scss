@@ -142,17 +142,20 @@
 }
 
 @function get-margins() {
-    $negatives: ();
+    $margins: (
+        a: auto,
+    );
 
     @each $key, $val in $spacers {
         @if $key != 0 and $val != 0 {
-            $negative: (
+            $margin: (
+                $key: $val,
                 "n#{$key}": -$val,
             );
 
-            $negatives: map-merge($negatives, $negative);
+            $margins: map-merge($margins, $margin);
         }
     }
 
-    @return map-merge($spacers, $negatives);
+    @return $margins;
 }
