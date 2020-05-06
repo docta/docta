@@ -80,10 +80,7 @@
 
     @each $breakpoint, $min-width in $breakpoints {
         @if $min-width != 0 and comparable($min-width, $gutter) {
-            $container: (
-                $breakpoint: $min-width - $gutter,
-            );
-
+            $container: (#{$breakpoint}: ($min-width - $gutter));
             $containers: map-merge($containers, $container);
         }
     }
@@ -142,18 +139,12 @@
 }
 
 @function get-margins() {
-    $margins: (
-        a: auto,
-    );
+    $margins: map-merge((#{a}: auto), $spacers);
 
     @each $key, $val in $spacers {
         @if $key != 0 and $val != 0 {
-            $margin: (
-                $key: $val,
-                "n#{$key}": -$val,
-            );
-
-            $margins: map-merge($margins, $margin);
+            $negative: (n#{$key}: -$val);
+            $negative: map-merge($margins, $negative);
         }
     }
 
