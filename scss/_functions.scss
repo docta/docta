@@ -144,7 +144,7 @@
     @each $key, $val in $spacers {
         @if $key != 0 and $val != 0 {
             $negative: (n#{$key}: -$val);
-            $negative: map-merge($margins, $negative);
+            $margins: map-merge($margins, $negative);
         }
     }
 
