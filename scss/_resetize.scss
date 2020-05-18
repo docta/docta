@@ -32,6 +32,8 @@ html {
 body {
     @extend %reset-space;
 
+    position: $body-position;
+    min-height: $body-min-height;
     font-family: $body-font-family;
     font-size: $body-font-size;
     font-style: $body-font-style;
