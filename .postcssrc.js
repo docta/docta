@@ -1,22 +1,18 @@
 // postcss
 
+const postcss = require("postcss");
+
+// Header
+// ---------------------------------------------------------------------------
+
+const data = require("./package.json");
+const header = `/*! ${data.name} ${data.version} | ${data.license} license | ${data.homepage} */`;
+
+// Options
+// ---------------------------------------------------------------------------
+
 module.exports = {
     plugins: [
-        require("autoprefixer"),
-        require("postcss-merge-longhand"),
-        require("postcss-minify-font-values"),
-        require("postcss-minify-gradients"),
-        require("postcss-normalize-charset"),
-        require("postcss-normalize-display-values"),
-        require("postcss-normalize-positions"),
-        require("postcss-normalize-repeat-style"),
-        require("postcss-normalize-string"),
-        require("postcss-normalize-timing-functions"),
-        require("postcss-normalize-unicode"),
-        require("postcss-normalize-url"),
-        require("postcss-ordered-values"),
-        require("postcss-reduce-initial"),
-        require("postcss-reduce-transforms"),
         require("postcss-pxtorem")({
             mediaQuery: true,
             minPixelValue: 0,
@@ -26,6 +22,25 @@ module.exports = {
         }),
         require("css-mqpacker")({
             sort: true,
+        }),
+        require("cssnano")({
+            preset: "default",
+            colormin: false,
+            convertValues: false,
+            discardComments: false,
+        }),
+        postcss.plugin("postcss-header", () => (css) => {
+            css.walkComments((comment) => {
+                comment.remove();
+            });
+
+            css.prepend(header);
+
+            css.walk((rule) => {
+                if (rule.prev() && rule.prev().type === "comment") {
+                    rule.raws.before = "\n\n";
+                }
+            });
         }),
     ],
 };

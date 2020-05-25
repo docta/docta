@@ -1,261 +1,36 @@
 //
-// Variables
+// Docta CSS - Variables
 //
 
 // Typography
 // ---------------------------------------------------------------------------
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !default;
 // stylelint-enable value-keyword-case
 
 // Body
 // ---------------------------------------------------------------------------
 
-$body-position: relative !default;
-$body-min-height: 100vh !default;
 $body-font-family: $font-family-sans-serif !default;
 $body-font-size: 1rem !default;
 $body-font-style: normal !default;
 $body-font-weight: 400 !default;
 $body-line-height: 1 !default;
-$body-color: $gray-900 !default;
-$body-text-align: left !default;
-$body-bg: $white !default;
+$body-color: #000000 !default;
+$body-background: #ffffff !default;
 
 // Links
 // ---------------------------------------------------------------------------
 
-$link-color: $primary-500 !default;
+$link-color: #0000ee !default;
 $link-decoration: none !default;
-$link-hover-color: $primary-600 !default;
-$link-hover-decoration: none !default;
+$link-hover-color: null !default;
+$link-hover-decoration: null !default;
 
-// Codes
+// Text-level semantics
 // ---------------------------------------------------------------------------
 
-$code-font-family: $font-family-monospace !default;
-
-// Spacers
-// ---------------------------------------------------------------------------
-
-$spacer: 1rem !default;
-
-$spacers: (
-    0: 0,
-    1: $spacer * 0.25,
-    2: $spacer * 0.5,
-    3: $spacer * 0.75,
-    4: $spacer * 1,
-    5: $spacer * 1.25,
-    6: $spacer * 1.5,
-    7: $spacer * 1.75,
-    8: $spacer * 2,
-    9: $spacer * 3,
-) !default;
-
-$margins: get-margins() !default;
-
-// Breakpoints
-// ---------------------------------------------------------------------------
-
-$breakpoints: (
-    xs: 0,
-    sm: $spacer * 36,
-    md: $spacer * 48,
-    lg: $spacer * 62,
-    xl: $spacer * 75,
-) !default;
-
-// Grid
-// ---------------------------------------------------------------------------
-
-$columns: 12 !default;
-$gutter: $spacer * 2 !default;
-$containers: get-containers() !default;
-$orders: get-orders() !default;
-
-// Utilities
-// ---------------------------------------------------------------------------
-
-$utilities: () !default;
-
-$_utilities: (
-    display: (
-        class: d,
-        print: true,
-        responsive: true,
-        values: (
-            b: block,
-            f: flex,
-            i: inline,
-            ib: inline-block,
-            if: inline-flex,
-            n: none,
-        ),
-    ),
-    flex: (
-        class: fx,
-        responsive: true,
-        values: (
-            fill: 1 1 auto,
-        ),
-    ),
-    flex-direction: (
-        class: fxd,
-        responsive: true,
-        values: (
-            c: column,
-            cr: column-reverse,
-            r: row,
-            rr: row-reverse,
-        ),
-    ),
-    flex-wrap: (
-        class: fxw,
-        responsive: true,
-        values: (
-            n: nowrap,
-            w: wrap,
-            wr: wrap-reverse,
-        ),
-    ),
-    flex-shrink: (
-        class: fxsh,
-        responsive: true,
-        values: 0 1,
-    ),
-    flex-grow: (
-        class: fxg,
-        responsive: true,
-        values: 0 1,
-    ),
-    align-content: (
-        class: ac,
-        responsive: true,
-        values: (
-            c: center,
-            fe: flex-end,
-            fs: flex-start,
-            s: stretch,
-            sa: space-around,
-            sb: space-between,
-        ),
-    ),
-    align-items: (
-        class: ai,
-        responsive: true,
-        values: (
-            b: baseline,
-            c: center,
-            fe: flex-end,
-            fs: flex-start,
-            s: stretch,
-        ),
-    ),
-    align-self: (
-        class: as,
-        responsive: true,
-        values: (
-            a: auto,
-            b: baseline,
-            c: center,
-            fe: flex-end,
-            fs: flex-start,
-            s: stretch,
-        ),
-    ),
-    justify-content: (
-        class: jc,
-        responsive: true,
-        values: (
-            c: center,
-            fe: flex-end,
-            fs: flex-start,
-            sa: space-around,
-            sb: space-between,
-        ),
-    ),
-    order: (
-        class: ord,
-        responsive: true,
-        values: $orders,
-    ),
-    margin: (
-        class: m,
-        responsive: true,
-        values: $margins,
-    ),
-    margin-x: (
-        class: mx,
-        responsive: true,
-        property: margin-right margin-left,
-        values: $margins,
-    ),
-    margin-y: (
-        class: my,
-        responsive: true,
-        property: margin-top margin-bottom,
-        values: $margins,
-    ),
-    margin-top: (
-        class: mt,
-        responsive: true,
-        values: $margins,
-    ),
-    margin-right: (
-        class: mr,
-        responsive: true,
-        values: $margins,
-    ),
-    margin-bottom: (
-        class: mb,
-        responsive: true,
-        values: $margins,
-    ),
-    margin-left: (
-        class: ml,
-        responsive: true,
-        values: $margins,
-    ),
-    padding: (
-        class: p,
-        responsive: true,
-        values: $spacers,
-    ),
-    padding-x: (
-        class: px,
-        responsive: true,
-        property: padding-right padding-left,
-        values: $spacers,
-    ),
-    padding-y: (
-        class: py,
-        responsive: true,
-        property: padding-top padding-bottom,
-        values: $spacers,
-    ),
-    padding-top: (
-        class: pt,
-        responsive: true,
-        values: $spacers,
-    ),
-    padding-right: (
-        class: pr,
-        responsive: true,
-        values: $spacers,
-    ),
-    padding-bottom: (
-        class: pb,
-        responsive: true,
-        values: $spacers,
-    ),
-    padding-left: (
-        class: pl,
-        responsive: true,
-        values: $spacers,
-    ),
-);
-
-$utilities: map-merge($_utilities, $utilities);
+$mark-color: #000000;
+$mark-background: #ffff00;
