@@ -1,0 +1,43 @@
+//
+// Docta CSS - Utilities
+//
+
+// Screen
+// ---------------------------------------------------------------------------
+
+@each $breakpoint in map-keys($breakpoints) {
+    @include media-up($breakpoint) {
+        $infix: get-infix($breakpoint);
+
+        @each $name, $options in $utilities {
+            @if map-get($options, responsive) == true or $infix == "" {
+                @each $suffix, $value in get-utility-values($name, $options) {
+                    .#{get-utility-classname($name, $options, $infix, $suffix)} {
+                        @each $property in get-utility-properties($name, $options) {
+                            #{$property}: $value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Print
+// ---------------------------------------------------------------------------
+
+@media print {
+    $infix: "-print";
+
+    @each $name, $options in $utilities {
+        @if map-get($options, print) == true {
+            @each $suffix, $value in get-utility-values($name, $options) {
+                .#{get-utility-classname($name, $options, $infix, $suffix)} {
+                    @each $property in get-utility-properties($name, $options) {
+                        #{$property}: $value;
+                    }
+                }
+            }
+        }
+    }
+}

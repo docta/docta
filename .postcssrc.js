@@ -24,10 +24,16 @@ module.exports = {
             sort: true,
         }),
         require("cssnano")({
-            preset: "default",
-            colormin: false,
-            convertValues: false,
-            discardComments: false,
+            preset: [
+                "default",
+                {
+                    colormin: false,
+                    convertValues: false,
+                    discardComments: false,
+                    mergeRules: false,
+                    mergeIdents: false,
+                },
+            ],
         }),
         postcss.plugin("postcss-header", () => (css) => {
             css.walkComments((comment) => {

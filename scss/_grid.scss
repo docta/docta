@@ -1,5 +1,5 @@
 //
-// Grid
+// Docta CSS - Grid
 //
 
 // Containers
@@ -20,7 +20,7 @@
 
         @each $breakpoint, $min-width in $breakpoints {
             @if $min-width != 0 and comparable($min-width, $gutter) {
-                $container: (#{$breakpoint}: ($min-width - $gutter));
+                $container: get-map-item($breakpoint, $min-width - $gutter);
                 $containers: map-merge($containers, $container) !global;
             }
         }

@@ -1,0 +1,77 @@
+//
+// Docta CSS - Functions
+//
+
+// Get map item
+// ---------------------------------------------------------------------------
+
+@function get-map-item($key, $value) {
+    @return ($key: $value);
+}
+
+// Get utility classname
+// ---------------------------------------------------------------------------
+
+@function get-utility-classname($utility, $options, $infix, $suffix) {
+    $prefix: if(map-has-key($options, class), map-get($options, class), $utility);
+    $suffix: if($suffix == null, "", "-#{$suffix}");
+    @return "#{$prefix}#{$infix}#{$suffix}";
+}
+
+// Get utility properties
+// ---------------------------------------------------------------------------
+
+@function get-utility-properties($utility, $options) {
+    $props: if(map-has-key($options, property), map-get($options, property), $utility);
+
+    @if type-of($props) != list and type-of($props) != map {
+        $props: append((), $props);
+    }
+
+    @return $props;
+}
+
+// Get utility values
+// ---------------------------------------------------------------------------
+
+@function get-utility-values($utility, $options) {
+    @if not map-has-key($options, values) {
+        @error "Utility '#{$utility}' requires values.";
+    }
+
+    $values: map-get($options, values);
+
+    @if type-of($values) != list and type-of($values) != map {
+        $values: append((), $values);
+    }
+
+    @if type-of(nth($values, 1)) != list {
+        $values: zip($values, $values);
+    }
+
+    @return $values;
+}
+
+// Get utility sizes
+// ---------------------------------------------------------------------------
+
+@function get-numerical-values($min, $max, $unit: "", $prepend: ()) {
+    @if type-of($min) != number or type-of($max) != number or not unitless($min) or not unitless($max) {
+        @error "Invalid numbers to generate numerical values: min #{$min} - max #{$max}";
+    } @else if $unit != "" and unquote($unit) != px {
+        @error "Invalid unit to generate numerical values: #{$unit}";
+    } @else if $prepend != () and type-of($prepend) != map {
+        @error "Only map can be prepend.";
+    }
+
+    $sizes: ();
+
+    @for $value from $min through $max {
+        $key: abs($value);
+        $key: if($value < 0, "n#{$key}", $key);
+        $value: #{$value}#{$unit};
+        $sizes: map-merge($sizes, get-map-item($key, $value));
+    }
+
+    @return map-merge($prepend, $sizes);
+}

@@ -1,0 +1,91 @@
+//
+// Docta CSS - Restore
+//
+
+// Utilities
+// ---------------------------------------------------------------------------
+
+$_utilities: (
+
+    "box-shadow": (
+        property: box-shadow,
+        class: shadow,
+        values: (
+            null: $box-shadow,
+            sm: $box-shadow-sm,
+            lg: $box-shadow-lg,
+            none: none
+        )
+    ),
+    "border-color": (
+        property: border-color,
+        class: border,
+        values: map-merge($theme-colors, (// ￿white￿: $white))
+    ),
+    "color": (
+        property: color,
+        class: text,
+        values:
+            map-merge(
+                $theme-colors,
+                (
+                    // ￿white￿: $white,
+                        // ￿body￿: $body-color,
+                        // ￿muted￿: $text-muted,
+                        // ￿black-50￿: rgba($black, 0.5),
+                        // ￿white-50￿: rgba($white, 0.5),
+                        // ￿reset￿: inherit
+                )
+            )
+    ),
+
+    "background-color": (
+        property: background-color,
+        class: bg,
+        values:
+            map-merge(
+                $theme-colors,
+                (
+                    // ￿body￿: $body-bg,
+                        // ￿white￿: $white,
+                        // ￿transparent￿: transparent
+                )
+            )
+    ),
+    "gradient": (
+        property: background-image,
+        class: bg,
+        values: (
+            gradient: var(--bs-gradient)
+        )
+    ),
+    "rounded-top": (
+        property: border-top-left-radius border-top-right-radius,
+        class: rounded-top,
+        values: (
+            null: $border-radius
+        )
+    ),
+    "rounded-right": (
+        property: border-top-right-radius border-bottom-right-radius,
+        class: rounded-right,
+        values: (
+            null: $border-radius
+        )
+    ),
+    "rounded-bottom": (
+        property: border-bottom-right-radius border-bottom-left-radius,
+        class: rounded-bottom,
+        values: (
+            null: $border-radius
+        )
+    ),
+    "rounded-left": (
+        property: border-bottom-left-radius border-top-left-radius,
+        class: rounded-left,
+        values: (
+            null: $border-radius
+        )
+    ),
+
+);
