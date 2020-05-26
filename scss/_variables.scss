@@ -45,3 +45,12 @@ $breakpoints: (
     lg: 992px,
     xl: 1200px,
 ) !default;
+
+@include _assert-ascending($breakpoints, "$breakpoints");
+@include _assert-starts-at-zero($breakpoints, "$breakpoints");
+
+// Grid
+// ---------------------------------------------------------------------------
+
+$columns: 12 !default;
+$gutter: 32px !default;
