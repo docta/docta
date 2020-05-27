@@ -9,12 +9,31 @@
     @include media-up($breakpoint) {
         $infix: get-infix($breakpoint);
 
-        @each $name, $options in $utilities {
+        @each $utility, $options in $utilities {
             @if map-get($options, responsive) == true or $infix == "" {
-                @each $suffix, $value in get-utility-values($name, $options) {
-                    .#{get-utility-classname($name, $options, $infix, $suffix)} {
-                        @each $property in get-utility-properties($name, $options) {
+                @each $suffix, $value in get-utility-values($utility, $options) {
+                    .#{get-utility-selector($utility, $options, $infix, $suffix)} {
+                        @each $property in get-utility-properties($utility, $options) {
                             #{$property}: $value;
+                        }
+                    }
+
+                    @if type-of($value) == color {
+                        .#{get-utility-selector-hover($utility, $options, $infix, $suffix)} {
+                            &:hover {
+                                @each $property in get-utility-properties($utility, $options) {
+                                    #{$property}: $value;
+                                }
+                            }
+                        }
+
+                        .#{get-utility-selector-focus($utility, $options, $infix, $suffix)} {
+                            &:focus,
+                            &:focus-within {
+                                @each $property in get-utility-properties($utility, $options) {
+                                    #{$property}: $value;
+                                }
+                            }
                         }
                     }
                 }
@@ -29,11 +48,11 @@
 @media print {
     $infix: "-print";
 
-    @each $name, $options in $utilities {
+    @each $utility, $options in $utilities {
         @if map-get($options, print) == true {
-            @each $suffix, $value in get-utility-values($name, $options) {
-                .#{get-utility-classname($name, $options, $infix, $suffix)} {
-                    @each $property in get-utility-properties($name, $options) {
+            @each $suffix, $value in get-utility-values($utility, $options) {
+                .#{get-utility-selector($utility, $options, $infix, $suffix)} {
+                    @each $property in get-utility-properties($utility, $options) {
                         #{$property}: $value;
                     }
                 }
