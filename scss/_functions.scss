@@ -2,6 +2,17 @@
 // Docta CSS - Functions
 //
 
+// Strip unit
+// ---------------------------------------------------------------------------
+
+@function strip-unit($number) {
+    @if type-of($number) == number and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+
+    @return $number;
+}
+
 // Get map item
 // ---------------------------------------------------------------------------
 
@@ -9,11 +20,78 @@
     @return ($key: $value);
 }
 
-// Get utility classname
+// Get color variant
 // ---------------------------------------------------------------------------
 
-@function get-utility-classname($utility, $options, $infix, $suffix) {
+@function get-variant($color, $variant, $opacity: 100%) {
+    $alpha: strip-unit($opacity) / 100;
+
+    @if $variant == null {
+        @return rgba($color, $alpha);
+    }
+
+    $color: change-color($color, $lightness: 50%);
+
+    @if $variant == 500 {
+        @return rgba($color, $alpha);
+    } @else if $variant < 500 {
+        $weight: percentage($variant / 500);
+        $color: mix($color, white, $weight);
+        @return rgba($color, $alpha);
+    } @else if $variant > 500 {
+        $weight: percentage(($variant - 500) / 500);
+        $color: mix(black, $color, $weight);
+        @return rgba($color, $alpha);
+    }
+}
+
+// Get color
+// ---------------------------------------------------------------------------
+
+@function get-color($color, $variant: null, $opacity: 100%) {
+    @if type-of($variant) == number and unit($variant) == "%" {
+        $opacity: $variant;
+        $variant: null;
+    }
+
+    @if type-of($color) == color {
+        @return get-variant($color, $variant, $opacity);
+    } @else if global-variable-exists("special-colors") and map-has-key($special-colors, $color) {
+        $color: map-get($special-colors, $color);
+        @return get-variant($color, $variant, $opacity);
+    } @else if map-has-key($theme-colors, $color) {
+        $color: map-get($theme-colors, $color);
+        $color: map-get($base-colors, $color);
+        @return get-variant($color, $variant, $opacity);
+    }
+
+    $color: map-get($base-colors, $color);
+    @return get-variant($color, $variant, $opacity);
+}
+
+// Get utility selector
+// ---------------------------------------------------------------------------
+
+@function get-utility-selector($utility, $options, $infix, $suffix) {
     $prefix: if(map-has-key($options, class), map-get($options, class), $utility);
+    $suffix: if($suffix == null, "", "-#{$suffix}");
+    @return "#{$prefix}#{$infix}#{$suffix}";
+}
+
+// Get utility selector hover
+// ---------------------------------------------------------------------------
+
+@function get-utility-selector-hover($utility, $options, $infix, $suffix) {
+    $prefix: if(map-has-key($options, class), "#{map-get($options, class)}h", "#{$utility}-hover");
+    $suffix: if($suffix == null, "", "-#{$suffix}");
+    @return "#{$prefix}#{$infix}#{$suffix}";
+}
+
+// Get utility selector hover
+// ---------------------------------------------------------------------------
+
+@function get-utility-selector-focus($utility, $options, $infix, $suffix) {
+    $prefix: if(map-has-key($options, class), "#{map-get($options, class)}f", "#{$utility}-focus");
     $suffix: if($suffix == null, "", "-#{$suffix}");
     @return "#{$prefix}#{$infix}#{$suffix}";
 }
@@ -52,15 +130,15 @@
     @return $values;
 }
 
-// Get utility sizes
+// Get utility numerical values
 // ---------------------------------------------------------------------------
 
-@function get-numerical-values($min, $max, $unit: "", $prepend: ()) {
+@function get-utility-numerical-values($min, $max, $unit: "", $append: ()) {
     @if type-of($min) != number or type-of($max) != number or not unitless($min) or not unitless($max) {
         @error "Invalid numbers to generate numerical values: min #{$min} - max #{$max}";
     } @else if $unit != "" and unquote($unit) != px {
         @error "Invalid unit to generate numerical values: #{$unit}";
-    } @else if $prepend != () and type-of($prepend) != map {
+    } @else if $append != () and type-of($append) != map {
         @error "Only map can be prepend.";
     }
 
@@ -73,5 +151,102 @@
         $sizes: map-merge($sizes, get-map-item($key, $value));
     }
 
-    @return map-merge($prepend, $sizes);
+    @return map-merge($sizes, $append);
+}
+
+// Get utility color values
+// ---------------------------------------------------------------------------
+
+@function get-utility-color-values($append: ()) {
+    $values: ();
+
+    // White
+
+    $value: get-color("white");
+    $value: get-map-item("white", $value);
+    $values: map-merge($values, $value);
+
+    @each $opacity in $color-opacities {
+        $value: get-color("white", $opacity);
+        $value: get-map-item("white-o#{strip-unit($opacity)}", $value);
+        $values: map-merge($values, $value);
+    }
+
+    // Grays
+
+    $value: get-color("gray");
+    $value: get-map-item("gray", $value);
+    $values: map-merge($values, $value);
+
+    @each $opacity in $color-opacities {
+        $value: get-color("gray", $opacity);
+        $value: get-map-item("gray-o#{strip-unit($opacity)}", $value);
+        $values: map-merge($values, $value);
+    }
+
+    @each $variant in $color-variants {
+        $value: get-color("gray", $variant);
+        $value: get-map-item("gray-v#{$variant}", $value);
+        $values: map-merge($values, $value);
+
+        @each $opacity in $color-opacities {
+            $value: get-color("gray", $variant, $opacity);
+            $value: get-map-item("gray-v#{$variant}-o#{strip-unit($opacity)}", $value);
+            $values: map-merge($values, $value);
+        }
+    }
+
+    // Black
+
+    $value: get-color("black");
+    $value: get-map-item("black", $value);
+    $values: map-merge($values, $value);
+
+    @each $opacity in $color-opacities {
+        $value: get-color("black", $opacity);
+        $value: get-map-item("black-o#{strip-unit($opacity)}", $value);
+        $values: map-merge($values, $value);
+    }
+
+    // Theme colors
+
+    @each $color, $equivalent in $theme-colors {
+        $value: get-color($equivalent);
+        $value: get-map-item("#{$color}", $value);
+        $values: map-merge($values, $value);
+
+        @each $opacity in $color-opacities {
+            $value: get-color($equivalent, $opacity);
+            $value: get-map-item("#{$color}-o#{strip-unit($opacity)}", $value);
+            $values: map-merge($values, $value);
+        }
+
+        @each $variant in $color-variants {
+            $value: get-color($equivalent, $variant);
+            $value: get-map-item("#{$color}-v#{$variant}", $value);
+            $values: map-merge($values, $value);
+
+            @each $opacity in $color-opacities {
+                $value: get-color($equivalent, $variant, $opacity);
+                $value: get-map-item("#{$color}-v#{$variant}-o#{strip-unit($opacity)}", $value);
+                $values: map-merge($values, $value);
+            }
+        }
+    }
+
+    // Special colors
+
+    @each $color, $equivalent in $special-colors {
+        $value: get-color($color);
+        $value: get-map-item("#{$color}", $value);
+        $values: map-merge($values, $value);
+
+        @each $opacity in $color-opacities {
+            $value: get-color($color, $opacity);
+            $value: get-map-item("#{$color}-o#{strip-unit($opacity)}", $value);
+            $values: map-merge($values, $value);
+        }
+    }
+
+    @return $values;
 }

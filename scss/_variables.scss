@@ -2,12 +2,64 @@
 // Docta CSS - Variables
 //
 
+// Color system
+// ---------------------------------------------------------------------------
+
+// stylelint-disable value-keyword-case
+
+$_base-colors: (
+    "white": White,
+    "gray": Gray,
+    "black": Black,
+    "red": Red,
+    "pink": Pink,
+    "purple": Purple,
+    "indigo": Indigo,
+    "blue": Blue,
+    "cyan": Cyan,
+    "teal": Teal,
+    "green": Green,
+    "yellow": Yellow,
+    "orange": Orange,
+);
+
+$base-colors: () !default;
+$base-colors: map-merge($_base-colors, $base-colors);
+
+$_theme-colors: (
+    "primary": "blue",
+    "secondary": "gray",
+    "success": "green",
+    "info": "cyan",
+    "warning": "yellow",
+    "danger": "red",
+);
+
+$theme-colors: () !default;
+$theme-colors: map-merge($_theme-colors, $theme-colors);
+
+$_special-colors: (
+    "light": get-color("gray", 300),
+    "muted": get-color("gray", 500),
+    "dark": get-color("gray", 700),
+    "body": get-color("gray", 900),
+    "link": get-color("primary"),
+    "hover": get-color("primary"),
+);
+
+$special-colors: () !default;
+$special-colors: map-merge($_special-colors, $special-colors);
+
+// stylelint-enable value-keyword-case
+
 // Typography
 // ---------------------------------------------------------------------------
 
 // stylelint-disable value-keyword-case
+
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !default;
 $font-family-sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !default;
+
 // stylelint-enable value-keyword-case
 
 // Body
@@ -18,13 +70,13 @@ $body-font-size: null !default;
 $body-font-style: null !default;
 $body-font-weight: null !default;
 $body-line-height: 1 !default;
-$body-color: null !default;
-$body-background: null !default;
+$body-color: get-color("body") !default;
+$body-background: get-color("white") !default;
 
 // Links
 // ---------------------------------------------------------------------------
 
-$link-color: #0000ee !default;
+$link-color: get-color("link") !default;
 $link-decoration: none !default;
 $link-hover-color: null !default;
 $link-hover-decoration: null !default;
@@ -32,8 +84,8 @@ $link-hover-decoration: null !default;
 // Text-level semantics
 // ---------------------------------------------------------------------------
 
-$mark-color: #000000;
-$mark-background: #ffff00;
+$mark-color: get-color("black") !default;
+$mark-background: get-color("yellow") !default;
 
 // Breakpoints
 // ---------------------------------------------------------------------------
@@ -55,38 +107,48 @@ $breakpoints: (
 $columns: 12 !default;
 $gutter: 32px !default;
 
-// Utilities numerical values
+// Utilities - Numerical values
 // ---------------------------------------------------------------------------
 
 $order-min: -1 !default;
 $order-max: $columns + 1 !default;
-$order-map: get-numerical-values($order-min, $order-max) !default;
+$order-map: get-utility-numerical-values($order-min, $order-max) !default;
 
 $padding-min: 0 !default;
 $padding-max: 48 !default;
-$padding-map: get-numerical-values($padding-min, $padding-max, px) !default;
+$padding-map: get-utility-numerical-values($padding-min, $padding-max, px) !default;
 
 $margin-min: -48 !default;
 $margin-max: 48 !default;
-$margin-map: get-numerical-values($margin-min, $margin-max, px, get-map-item(a, auto)) !default;
+$margin-map: get-utility-numerical-values($margin-min, $margin-max, px, get-map-item(a, auto)) !default;
 
 $font-size-min: 10 !default;
 $font-size-max: 48 !default;
-$font-size-map: get-numerical-values($font-size-min, $font-size-max, px) !default;
+$font-size-map: get-utility-numerical-values($font-size-min, $font-size-max, px) !default;
 
 $line-height-min: $font-size-min !default;
 $line-height-max: ceil($font-size-max * 2) !default;
-$line-height-map: get-numerical-values($line-height-min, $line-height-max, px) !default;
+$line-height-map: get-utility-numerical-values($line-height-min, $line-height-max, px) !default;
 
 $border-width-min: 0 !default;
 $border-width-max: 8 !default;
-$border-width-map: get-numerical-values($border-width-min, $border-width-max, px) !default;
+$border-width-map: get-utility-numerical-values($border-width-min, $border-width-max, px) !default;
 
 $border-radius-min: 0 !default;
 $border-radius-max: 8 !default;
-$border-radius-map: get-numerical-values($border-radius-min, $border-radius-max, px, get-map-item(null, 50%)) !default;
+$border-radius-map: get-utility-numerical-values($border-radius-min, $border-radius-max, px, get-map-item(null, 50%)) !default;
 
-// Utilities repeated values
+// Utilities - Color values
+// ---------------------------------------------------------------------------
+
+$color-variants: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900) !default;
+$color-opacities: (10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%) !default;
+
+$color-map: get-utility-color-values(get-map-item(i, inherit)) !default;
+$background-color-map: get-utility-color-values(get-map-item(t, transparent)) !default;
+$border-color-map: get-utility-color-values(get-map-item(t, transparent)) !default;
+
+// Utilities - Repeated values
 // ---------------------------------------------------------------------------
 
 $size-map: (
@@ -131,9 +193,7 @@ $border-style-map: (
 // Utilities
 // ---------------------------------------------------------------------------
 
-$utilities: () !default;
-
-$initial-utilities: (
+$_utilities: (
     position: (
         class: pos,
         values: (
@@ -399,6 +459,10 @@ $initial-utilities: (
         class: lh,
         values: $line-height-map,
     ),
+    color: (
+        class: c,
+        values: $color-map,
+    ),
     text-align: (
         responsive: true,
         class: ta,
@@ -483,6 +547,10 @@ $initial-utilities: (
             t: text,
         ),
     ),
+    background-color: (
+        class: bgc,
+        values: $background-color-map,
+    ),
     border: (
         class: bd,
         values: $border-map,
@@ -512,6 +580,10 @@ $initial-utilities: (
     border-left: (
         class: bdl,
         values: $border-map,
+    ),
+    border-color: (
+        class: bdc,
+        values: $border-color-map,
     ),
     border-style: (
         class: bds,
@@ -607,4 +679,5 @@ $initial-utilities: (
     ),
 );
 
-$utilities: map-merge($initial-utilities, $utilities);
+$utilities: () !default;
+$utilities: map-merge($_utilities, $utilities);
