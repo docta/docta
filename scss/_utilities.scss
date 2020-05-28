@@ -18,7 +18,7 @@
                         }
                     }
 
-                    @if type-of($value) == color {
+                    @if check-utility-value-color($utility, $options, $value) {
                         .#{get-utility-selector-hover($utility, $options, $infix, $suffix)} {
                             &:hover {
                                 @each $property in get-utility-properties($utility, $options) {

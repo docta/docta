@@ -20,7 +20,7 @@ $_base-colors: (
     "teal": Teal,
     "green": Green,
     "yellow": Yellow,
-    "orange": Orange,
+    "orange": Orange
 );
 
 $base-colors: () !default;
@@ -32,7 +32,7 @@ $_theme-colors: (
     "success": "green",
     "info": "cyan",
     "warning": "yellow",
-    "danger": "red",
+    "danger": "red"
 );
 
 $theme-colors: () !default;
@@ -44,7 +44,7 @@ $_special-colors: (
     "dark": get-color("gray", 700),
     "body": get-color("gray", 900),
     "link": get-color("primary"),
-    "hover": get-color("primary"),
+    "hover": get-color("primary")
 );
 
 $special-colors: () !default;
@@ -95,7 +95,7 @@ $breakpoints: (
     sm: 576px,
     md: 768px,
     lg: 992px,
-    xl: 1200px,
+    xl: 1200px
 ) !default;
 
 @include _assert-ascending($breakpoints, "$breakpoints");
@@ -144,9 +144,9 @@ $border-radius-map: get-utility-numerical-values($border-radius-min, $border-rad
 $color-variants: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900) !default;
 $color-opacities: (10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%) !default;
 
-$color-map: get-utility-color-values(get-map-item(i, inherit)) !default;
-$background-color-map: get-utility-color-values(get-map-item(t, transparent)) !default;
-$border-color-map: get-utility-color-values(get-map-item(t, transparent)) !default;
+$color-map: get-utility-color-values(get-map-item(inherit)) !default;
+$background-color-map: get-utility-color-values(get-map-item(transparent)) !default;
+$border-color-map: get-utility-color-values(get-map-item(transparent)) !default;
 
 // Utilities - Repeated values
 // ---------------------------------------------------------------------------
@@ -156,28 +156,28 @@ $size-map: (
     25: 25%,
     50: 50%,
     75: 75%,
-    100: 100%,
+    100: 100%
 ) !default;
 
 $width-size-map: (
     100: 100%,
-    100v: 100vw,
+    100v: 100vw
 ) !default;
 
 $height-size-map: (
     100: 100%,
-    100v: 100vh,
+    100v: 100vh
 ) !default;
 
 $overflow-map: (
     a: auto,
     h: hidden,
     s: scroll,
-    v: visible,
+    v: visible
 ) !default;
 
 $border-map: (
-    null: 1px solid currentColor,
+    null: 1px solid currentColor
 ) !default;
 
 $border-style-map: (
@@ -187,7 +187,7 @@ $border-style-map: (
     i: inset,
     n: none,
     o: outset,
-    s: solid,
+    s: solid
 ) !default;
 
 // Utilities
@@ -201,8 +201,8 @@ $_utilities: (
             f: fixed,
             r: relative,
             s: static,
-            y: sticky,
-        ),
+            y: sticky
+        )
     ),
     display: (
         responsive: true,
@@ -217,15 +217,15 @@ $_utilities: (
             n: none,
             tb: table,
             tbc: table-cell,
-            tbr: table-row,
-        ),
+            tbr: table-row
+        )
     ),
     flex: (
         responsive: true,
         class: fx,
         values: (
-            null: 1 1 auto,
-        ),
+            null: 1 1 auto
+        )
     ),
     flex-direction: (
         responsive: true,
@@ -234,8 +234,8 @@ $_utilities: (
             c: column,
             cr: column-reverse,
             r: row,
-            rr: row-reverse,
-        ),
+            rr: row-reverse
+        )
     ),
     flex-wrap: (
         responsive: true,
@@ -243,18 +243,18 @@ $_utilities: (
         values: (
             n: nowrap,
             w: wrap,
-            wr: wrap-reverse,
-        ),
+            wr: wrap-reverse
+        )
     ),
     flex-shrink: (
         responsive: true,
         class: fxsh,
-        values: 0 1,
+        values: 0 1
     ),
     flex-grow: (
         responsive: true,
         class: fxg,
-        values: 0 1,
+        values: 0 1
     ),
     align-content: (
         responsive: true,
@@ -265,8 +265,8 @@ $_utilities: (
             fs: flex-start,
             s: stretch,
             sa: space-around,
-            sb: space-between,
-        ),
+            sb: space-between
+        )
     ),
     align-items: (
         responsive: true,
@@ -276,8 +276,8 @@ $_utilities: (
             c: center,
             fe: flex-end,
             fs: flex-start,
-            s: stretch,
-        ),
+            s: stretch
+        )
     ),
     align-self: (
         responsive: true,
@@ -288,8 +288,8 @@ $_utilities: (
             c: center,
             fe: flex-end,
             fs: flex-start,
-            s: stretch,
-        ),
+            s: stretch
+        )
     ),
     justify-content: (
         responsive: true,
@@ -299,13 +299,13 @@ $_utilities: (
             fe: flex-end,
             fs: flex-start,
             sa: space-around,
-            sb: space-between,
-        ),
+            sb: space-between
+        )
     ),
     order: (
         responsive: true,
         class: ord,
-        values: $order-map,
+        values: $order-map
     ),
     float: (
         responsive: true,
@@ -313,137 +313,137 @@ $_utilities: (
         values: (
             l: left,
             n: none,
-            r: right,
-        ),
+            r: right
+        )
     ),
     width: (
         class: w,
-        values: map-merge($size-map, $width-size-map),
+        values: map-merge($size-map, $width-size-map)
     ),
     min-width: (
         class: miw,
-        values: $width-size-map,
+        values: $width-size-map
     ),
     max-width: (
         class: maw,
-        values: $width-size-map,
+        values: $width-size-map
     ),
     height: (
         class: h,
-        values: map-merge($size-map, $height-size-map),
+        values: map-merge($size-map, $height-size-map)
     ),
     min-height: (
         class: mih,
-        values: $height-size-map,
+        values: $height-size-map
     ),
     max-height: (
         class: mah,
-        values: $height-size-map,
+        values: $height-size-map
     ),
     padding: (
         responsive: true,
         class: p,
-        values: $padding-map,
+        values: $padding-map
     ),
     padding-x: (
         responsive: true,
         class: px,
         property: padding-right padding-left,
-        values: $padding-map,
+        values: $padding-map
     ),
     padding-y: (
         responsive: true,
         class: py,
         property: padding-top padding-bottom,
-        values: $padding-map,
+        values: $padding-map
     ),
     padding-top: (
         responsive: true,
         class: pt,
-        values: $padding-map,
+        values: $padding-map
     ),
     padding-right: (
         responsive: true,
         class: pr,
-        values: $padding-map,
+        values: $padding-map
     ),
     padding-bottom: (
         responsive: true,
         class: pb,
-        values: $padding-map,
+        values: $padding-map
     ),
     padding-left: (
         responsive: true,
         class: pl,
-        values: $padding-map,
+        values: $padding-map
     ),
     margin: (
         responsive: true,
         class: m,
-        values: $margin-map,
+        values: $margin-map
     ),
     margin-x: (
         responsive: true,
         class: mx,
         property: margin-right margin-left,
-        values: $margin-map,
+        values: $margin-map
     ),
     margin-y: (
         responsive: true,
         class: my,
         property: margin-top margin-bottom,
-        values: $margin-map,
+        values: $margin-map
     ),
     margin-top: (
         responsive: true,
         class: mt,
-        values: $margin-map,
+        values: $margin-map
     ),
     margin-right: (
         responsive: true,
         class: mr,
-        values: $margin-map,
+        values: $margin-map
     ),
     margin-bottom: (
         responsive: true,
         class: mb,
-        values: $margin-map,
+        values: $margin-map
     ),
     margin-left: (
         responsive: true,
         class: ml,
-        values: $margin-map,
+        values: $margin-map
     ),
     overflow: (
         class: ov,
-        values: $overflow-map,
+        values: $overflow-map
     ),
     overflow-x: (
         class: ovx,
-        values: $overflow-map,
+        values: $overflow-map
     ),
     overflow-y: (
         class: ovy,
-        values: $overflow-map,
+        values: $overflow-map
     ),
     font-family: (
         class: ff,
         values: (
             m: $font-family-monospace,
-            ss: $font-family-sans-serif,
-        ),
+            ss: $font-family-sans-serif
+        )
     ),
     font-size: (
         responsive: true,
         class: fz,
-        values: $font-size-map,
+        values: $font-size-map
     ),
     font-style: (
         class: fs,
         values: (
             i: italic,
-            nm: normal,
-        ),
+            nm: normal
+        )
     ),
     font-weight: (
         class: fw,
@@ -451,17 +451,17 @@ $_utilities: (
             b: bold,
             br: bolder,
             lr: lighter,
-            nm: normal,
-        ),
+            nm: normal
+        )
     ),
     line-height: (
         responsive: true,
         class: lh,
-        values: $line-height-map,
+        values: $line-height-map
     ),
     color: (
         class: c,
-        values: $color-map,
+        values: $color-map
     ),
     text-align: (
         responsive: true,
@@ -470,8 +470,8 @@ $_utilities: (
             c: center,
             j: justify,
             l: left,
-            r: right,
-        ),
+            r: right
+        )
     ),
     text-decoration: (
         class: td,
@@ -479,8 +479,8 @@ $_utilities: (
             l: line-through,
             n: none,
             o: overline,
-            u: underline,
-        ),
+            u: underline
+        )
     ),
     text-transform: (
         class: tt,
@@ -488,16 +488,16 @@ $_utilities: (
             c: capitalize,
             l: lowercase,
             n: none,
-            u: uppercase,
-        ),
+            u: uppercase
+        )
     ),
     word-wrap: (
         class: wow,
         values: (
             b: break-word,
             n: none,
-            nm: normal,
-        ),
+            nm: normal
+        )
     ),
     white-space: (
         class: whs,
@@ -506,8 +506,8 @@ $_utilities: (
             nw: nowrap,
             p: pre,
             pl: pre-line,
-            pw: pre-wrap,
-        ),
+            pw: pre-wrap
+        )
     ),
     vertical-align: (
         class: va,
@@ -519,23 +519,23 @@ $_utilities: (
             sup: super,
             t: top,
             tb: text-bottom,
-            tt: text-top,
-        ),
+            tt: text-top
+        )
     ),
     pointer-events: (
         class: pe,
         values: (
             a: auto,
-            n: none,
-        ),
+            n: none
+        )
     ),
     visibility: (
         class: v,
         values: (
             c: collapse,
             h: hidden,
-            v: visible,
-        ),
+            v: visible
+        )
     ),
     user-select: (
         class: us,
@@ -544,139 +544,169 @@ $_utilities: (
             all: all,
             c: contain,
             n: none,
-            t: text,
-        ),
+            t: text
+        )
     ),
     background-color: (
         class: bgc,
-        values: $background-color-map,
+        values: $background-color-map
     ),
     border: (
         class: bd,
-        values: $border-map,
+        values: $border-map
     ),
     border-x: (
         class: bdx,
         property: border-right border-left,
-        values: $border-map,
+        values: $border-map
     ),
     border-y: (
         class: bdy,
         property: border-top border-bottom,
-        values: $border-map,
+        values: $border-map
     ),
     border-top: (
         class: bdt,
-        values: $border-map,
+        values: $border-map
     ),
     border-right: (
         class: bdr,
-        values: $border-map,
+        values: $border-map
     ),
     border-bottom: (
         class: bdb,
-        values: $border-map,
+        values: $border-map
     ),
     border-left: (
         class: bdl,
-        values: $border-map,
+        values: $border-map
     ),
     border-color: (
         class: bdc,
-        values: $border-color-map,
+        values: $border-color-map
+    ),
+    border-color-x: (
+        class: bdcx,
+        property: border-right-color border-left-color,
+        values: $border-color-map
+    ),
+    border-color-y: (
+        class: bdcy,
+        property: border-top-color border-bottom-color,
+        values: $border-color-map
+    ),
+    border-color-top: (
+        class: bdct,
+        property: border-top-color,
+        values: $border-color-map
+    ),
+    border-color-right: (
+        class: bdcr,
+        property: border-right-color,
+        values: $border-color-map
+    ),
+    border-color-bottom: (
+        class: bdcb,
+        property: border-bottom-color,
+        values: $border-color-map
+    ),
+    border-color-left: (
+        class: bdcl,
+        property: border-left-color,
+        values: $border-color-map
     ),
     border-style: (
         class: bds,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-style-x: (
         class: bdsx,
         property: border-right-style border-left-style,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-style-y: (
         class: bdsy,
         property: border-top-style border-bottom-style,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-style-top: (
         class: bdst,
         property: border-top-style,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-style-right: (
         class: bdsr,
         property: border-right-style,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-style-bottom: (
         class: bdsb,
         property: border-bottom-style,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-style-left: (
         class: bdsl,
         property: border-left-style,
-        values: $border-style-map,
+        values: $border-style-map
     ),
     border-width: (
         class: bdw,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-width-x: (
         class: bdwx,
         property: border-right-width border-left-width,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-width-y: (
         class: bdwy,
         property: border-top-width border-bottom-width,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-width-top: (
         class: bdwt,
         property: border-top-width,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-width-right: (
         class: bdwr,
         property: border-right-width,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-width-bottom: (
         class: bdwb,
         property: border-bottom-width,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-width-left: (
         class: bdwl,
         property: border-left-width,
-        values: $border-width-map,
+        values: $border-width-map
     ),
     border-radius: (
         class: bdrs,
-        values: $border-radius-map,
+        values: $border-radius-map
     ),
     border-radius-top-right: (
         class: bdrstr,
         property: border-top-right-radius,
-        values: $border-radius-map,
+        values: $border-radius-map
     ),
     border-radius-top-left: (
         class: bdrstl,
         property: border-top-left-radius,
-        values: $border-radius-map,
+        values: $border-radius-map
     ),
     border-radius-bottom-right: (
         class: bdrsbr,
         property: border-bottom-right-radius,
-        values: $border-radius-map,
+        values: $border-radius-map
     ),
     border-radius-bottom-left: (
         class: bdrsbl,
         property: border-bottom-left-radius,
-        values: $border-radius-map,
-    ),
+        values: $border-radius-map
+    )
 );
 
 $utilities: () !default;

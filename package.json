@@ -1,6 +1,6 @@
 {
     "name": "docta",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "license": "MIT",
     "description": "Package in experimental stage. Do not use for production.",
     "author": "Lucas Banegas <lucasconobanegas@gmail.com>",

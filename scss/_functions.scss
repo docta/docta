@@ -16,7 +16,11 @@
 // Get map item
 // ---------------------------------------------------------------------------
 
-@function get-map-item($key, $value) {
+@function get-map-item($key, $value: null) {
+    @if $value == null {
+        @return ($key: $key);
+    }
+
     @return ($key: $value);
 }
 
@@ -154,6 +158,31 @@
     @return map-merge($sizes, $append);
 }
 
+// Check utility value color
+// ---------------------------------------------------------------------------
+
+@function check-utility-value-color($utility, $options, $value) {
+    @if type-of($value) == color {
+        @return true;
+    } @else if str-index($utility, color) != null {
+        @return true;
+    } @else if map-has-key($options, property) {
+        $properties: map-get($options, property);
+
+        @if type-of($properties) == string and str-index($properties, color) != null {
+            @return true;
+        } @else if type-of($properties) == list {
+            @each $property in $properties {
+                @if str-index($property, color) != null {
+                    @return true;
+                }
+            }
+        }
+    }
+
+    @return false;
+}
+
 // Get utility color values
 // ---------------------------------------------------------------------------
 
@@ -247,6 +276,9 @@
             $values: map-merge($values, $value);
         }
     }
+
+    // Append colors
+    $values: map-merge($values, $append);
 
     @return $values;
 }
