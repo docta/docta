@@ -53,7 +53,7 @@
 // ---------------------------------------------------------------------------
 
 @function get-color($color, $variant: null, $opacity: 100%) {
-    @if type-of($variant) == number and unit($variant) == "%" {
+    @if type-of($variant) == number and unit($variant) == unquote("%") {
         $opacity: $variant;
         $variant: null;
     }
