@@ -1,4 +1,4 @@
-/*! docta 2.1.0 | MIT license | https://github.com/docta/docta */
+/*! docta 2.3.0 | MIT license | https://github.com/docta/docta */
 
 *,
 ::after,
@@ -312,8 +312,8 @@ template {
     outline: 0;
 }
 
-.container,
-.container-fluid {
+.ct,
+.ctf {
     width: 100%;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -341,7 +341,7 @@ template {
 .col-10,
 .col-11,
 .col-12,
-.col-auto,
+.col-a,
 .col-lg,
 .col-lg-1,
 .col-lg-2,
@@ -355,7 +355,7 @@ template {
 .col-lg-10,
 .col-lg-11,
 .col-lg-12,
-.col-lg-auto,
+.col-lg-a,
 .col-md,
 .col-md-1,
 .col-md-2,
@@ -369,7 +369,7 @@ template {
 .col-md-10,
 .col-md-11,
 .col-md-12,
-.col-md-auto,
+.col-md-a,
 .col-sm,
 .col-sm-1,
 .col-sm-2,
@@ -383,7 +383,7 @@ template {
 .col-sm-10,
 .col-sm-11,
 .col-sm-12,
-.col-sm-auto,
+.col-sm-a,
 .col-xl,
 .col-xl-1,
 .col-xl-2,
@@ -397,7 +397,7 @@ template {
 .col-xl-10,
 .col-xl-11,
 .col-xl-12,
-.col-xl-auto {
+.col-xl-a {
     position: relative;
     width: 100%;
     padding-right: 1rem;
@@ -407,6 +407,12 @@ template {
 .col {
     flex-basis: 0;
     flex-grow: 1;
+    max-width: 100%;
+}
+
+.col-a {
+    flex: 0 0 auto;
+    width: auto;
     max-width: 100%;
 }
 
@@ -467,12 +473,6 @@ template {
 
 .col-12 {
     flex: 0 0 100%;
-    max-width: 100%;
-}
-
-.col-auto {
-    flex: 0 0 auto;
-    width: auto;
     max-width: 100%;
 }
 
@@ -111394,13 +111394,19 @@ template {
 }
 
 @media (min-width: 36rem) {
-    .container {
+    .ct {
         max-width: 34rem;
     }
 
     .col-sm {
         flex-basis: 0;
         flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col-sm-a {
+        flex: 0 0 auto;
+        width: auto;
         max-width: 100%;
     }
 
@@ -111461,12 +111467,6 @@ template {
 
     .col-sm-12 {
         flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .col-sm-auto {
-        flex: 0 0 auto;
-        width: auto;
         max-width: 100%;
     }
 
@@ -116694,13 +116694,19 @@ template {
 }
 
 @media (min-width: 48rem) {
-    .container {
+    .ct {
         max-width: 46rem;
     }
 
     .col-md {
         flex-basis: 0;
         flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col-md-a {
+        flex: 0 0 auto;
+        width: auto;
         max-width: 100%;
     }
 
@@ -116761,12 +116767,6 @@ template {
 
     .col-md-12 {
         flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .col-md-auto {
-        flex: 0 0 auto;
-        width: auto;
         max-width: 100%;
     }
 
@@ -121994,13 +121994,19 @@ template {
 }
 
 @media (min-width: 62rem) {
-    .container {
+    .ct {
         max-width: 60rem;
     }
 
     .col-lg {
         flex-basis: 0;
         flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col-lg-a {
+        flex: 0 0 auto;
+        width: auto;
         max-width: 100%;
     }
 
@@ -122061,12 +122067,6 @@ template {
 
     .col-lg-12 {
         flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .col-lg-auto {
-        flex: 0 0 auto;
-        width: auto;
         max-width: 100%;
     }
 
@@ -127294,13 +127294,19 @@ template {
 }
 
 @media (min-width: 75rem) {
-    .container {
+    .ct {
         max-width: 73rem;
     }
 
     .col-xl {
         flex-basis: 0;
         flex-grow: 1;
+        max-width: 100%;
+    }
+
+    .col-xl-a {
+        flex: 0 0 auto;
+        width: auto;
         max-width: 100%;
     }
 
@@ -127361,12 +127367,6 @@ template {
 
     .col-xl-12 {
         flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .col-xl-auto {
-        flex: 0 0 auto;
-        width: auto;
         max-width: 100%;
     }
 

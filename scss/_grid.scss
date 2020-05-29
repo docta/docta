@@ -5,8 +5,8 @@
 // Containers
 // ---------------------------------------------------------------------------
 
-.container,
-.container-fluid {
+.ct,
+.ctf {
     width: 100%;
     padding-right: $gutter / 2;
     padding-left: $gutter / 2;
@@ -14,7 +14,7 @@
     margin-left: auto;
 }
 
-.container {
+.ct {
     @if not global-variable-exists("containers") {
         $containers: () !global;
 
@@ -58,7 +58,8 @@
 @each $breakpoint in map-keys($breakpoints) {
     $infix: get-infix($breakpoint);
 
-    .col#{$infix} {
+    .col#{$infix},
+    .col#{$infix}-a {
         @extend %column;
     }
 
@@ -68,14 +69,16 @@
         }
     }
 
-    .col#{$infix}-auto {
-        @extend %column;
-    }
-
     @include media-up($breakpoint) {
         .col#{$infix} {
             flex-basis: 0;
             flex-grow: 1;
+            max-width: 100%;
+        }
+
+        .col#{$infix}-a {
+            flex: 0 0 auto;
+            width: auto;
             max-width: 100%;
         }
 
@@ -84,12 +87,6 @@
                 flex: 0 0 percentage($size / $columns);
                 max-width: percentage($size / $columns);
             }
-        }
-
-        .col#{$infix}-auto {
-            flex: 0 0 auto;
-            width: auto;
-            max-width: 100%;
         }
 
         @for $size from 0 through ($columns - 1) {
