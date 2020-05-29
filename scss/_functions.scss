@@ -24,11 +24,25 @@
     @return ($key: $value);
 }
 
-// Get color variant
+// Get color
 // ---------------------------------------------------------------------------
 
-@function get-variant($color, $variant, $opacity: 100%) {
-    $alpha: strip-unit($opacity) / 100;
+@function get-color($color, $variant: null, $opacity: null) {
+    @if map-has-key($base-colors, $color) {
+        $color: map-get($base-colors, $color);
+    } @else if map-has-key($theme-colors, $color) {
+        $color: map-get($theme-colors, $color);
+        $color: map-get($base-colors, $color);
+    } @else if global-variable-exists("special-colors") and map-has-key($special-colors, $color) {
+        $color: map-get($special-colors, $color);
+    }
+
+    @if type-of($variant) == number and unit($variant) == unquote("%") and $opacity == null {
+        $opacity: $variant;
+        $variant: null;
+    }
+
+    $alpha: if($opacity == null, alpha($color), strip-unit($opacity) / 100);
 
     @if $variant == null {
         @return rgba($color, $alpha);
@@ -47,30 +61,6 @@
         $color: mix(black, $color, $weight);
         @return rgba($color, $alpha);
     }
-}
-
-// Get color
-// ---------------------------------------------------------------------------
-
-@function get-color($color, $variant: null, $opacity: 100%) {
-    @if type-of($variant) == number and unit($variant) == unquote("%") {
-        $opacity: $variant;
-        $variant: null;
-    }
-
-    @if type-of($color) == color {
-        @return get-variant($color, $variant, $opacity);
-    } @else if global-variable-exists("special-colors") and map-has-key($special-colors, $color) {
-        $color: map-get($special-colors, $color);
-        @return get-variant($color, $variant, $opacity);
-    } @else if map-has-key($theme-colors, $color) {
-        $color: map-get($theme-colors, $color);
-        $color: map-get($base-colors, $color);
-        @return get-variant($color, $variant, $opacity);
-    }
-
-    $color: map-get($base-colors, $color);
-    @return get-variant($color, $variant, $opacity);
 }
 
 // Get utility selector
